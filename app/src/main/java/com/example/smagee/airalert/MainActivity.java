@@ -115,20 +115,13 @@ public class MainActivity extends AppCompatActivity implements DownloadCallback<
     // Update your UI here based on result of download.
     Log.d("result", result);
     try {
-      JSONObject res = new JSONObject(result);
-      JSONObject pollution = res.getJSONObject("data").getJSONObject("current").getJSONObject("pollution");
-      int val = pollution.getInt("aqius");
-      int catNum = val / 50;
-      String paramName = pollution.getString("ParameterName");
-      String output = paramName + ": " + Integer.toString(val);
-
-//      JSONArray jsonArray = new JSONArray(result);
-//      JSONObject reading = jsonArray.getJSONObject(1);
-//      String paramName = reading.getString("ParameterName");
-//      int val = reading.getInt("AQI");
-//      int catNum = reading.getJSONObject("Category").getInt("Number");
-//      int lastUpdate = reading.getInt("HourObserved");
-//      String output = paramName + ": " + Integer.toString(val) + " when: " + Integer.toString(lastUpdate);
+      JSONArray jsonArray = new JSONArray(result);
+      JSONObject reading = jsonArray.getJSONObject(1);
+      String paramName = reading.getString("ParameterName");
+      int val = reading.getInt("AQI");
+      int catNum = reading.getJSONObject("Category").getInt("Number");
+      int lastUpdate = reading.getInt("HourObserved");
+      String output = paramName + ": " + Integer.toString(val) + " when: " + Integer.toString(lastUpdate);
       writeOutput(output);
       setLayoutBackground(catNum);
     } catch (Exception e) {

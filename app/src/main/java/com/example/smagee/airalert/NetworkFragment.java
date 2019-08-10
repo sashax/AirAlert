@@ -61,13 +61,9 @@ public class NetworkFragment extends Fragment {
     public void startDownload(Location location) {
         cancelDownload();
         mDownloadTask = new DownloadTask(mCallback);
-//        String urlString = "http://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=" +
-//          Double.toString(location.getLatitude()) + "&longitude=" + Double.toString(location.getLongitude()) + "&distance=25&API_KEY="
-//          + getString(R.string.api_key);
-        String urlString = "https://api.airvisual.com/v2/nearest_station?lat="  +
-                Double.toString(location.getLatitude()) +
-                "&lon=" + Double.toString(location.getLongitude()) +
-                "&key=" + getString(R.string.api_key);
+        String urlString = "http://www.airnowapi.org/aq/observation/latLong/current/?format=application/json&latitude=" +
+          Double.toString(location.getLatitude()) + "&longitude=" + Double.toString(location.getLongitude()) + "&distance=25&API_KEY="
+          + getString(R.string.api_key);
         mDownloadTask.execute(urlString);
     }
 
